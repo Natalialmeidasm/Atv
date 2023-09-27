@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="/"></script>
+    <script>
+        function validarFormulario() {
+            var nome = document.getElementById('nome').value;
+            var senha = document.getElementById('senha').value;
+            var nomeError = document.getElementById('nomeError');
+            var senhaError = document.getElementById('senhaError');
+            
+            // Verificar se o campo de nome está vazio ou tem menos de 3 caracteres
+            if (nome === "" || nome.length < 3) {
+                nomeError.textContent = 'Nome deve ter pelo menos 3 caracteres.';
+                return false;
+            } else {
+                nomeError.textContent = ''; // Limpar mensagens de erro anteriores
+            }
+
+            // Verificar se o nome está correto (substitua 'nome_correta' pelo nome desejado)
+            if (nome !== 'João') {
+                nomeError.textContent = 'Nome incorreto.';
+                return false;
+            } else {
+                nomeError.textContent = ''; // Limpar mensagens de erro anteriores
+            }
+
+            // Verificar se o campo de senha está vazio
+            if (senha === "") {
+                senhaError.textContent = 'Digite a senha.';
+                return false;
+            } else {
+                senhaError.textContent = ''; // Limpar mensagens de erro anteriores
+            }
+
+            // Verificar se a senha está correta (substitua 'senha_correta' pela senha desejada)
+            if (senha !== 'Abacatebom') {
+                senhaError.textContent = 'Senha incorreta.';
+                return false;
+            } else {
+                senhaError.textContent = ''; // Limpar mensagens de erro anteriores
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="page">
+        <form method="POST" class="formLogin" onsubmit="return validarFormulario()">
+            <h1>Login</h1>
+            <p>Digite os seus dados de acesso no campo abaixo.</p>
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" placeholder="Digite seu nome" autofocus="true" />
+            <span id="nomeError" class="error"></span> <!-- Exibir mensagens de erro aqui -->
+
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" placeholder="Digite sua senha" />
+            <span id="senhaError" class="error"></span> <!-- Exibir mensagens de erro aqui -->
+
+            <a href="/">Esqueci minha senha</a>
+            <a href="menu.html"><button id="acessar">Acessar</button></a>
+
+            <div class="signup-link">
+                <p>Não tem uma conta? <a href="cadastrocliente.html">Cadastre-se</a></p>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

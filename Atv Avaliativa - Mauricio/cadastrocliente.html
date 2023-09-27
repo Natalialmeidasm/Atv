@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Clientes</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $(function() {
+          $("#dataNascimento").datepicker({
+            dateFormat: "dd/mm/yy", // Formato da data
+            changeYear: true, // Permitir seleção de ano
+            yearRange: "1900:2023", // Intervalo de anos permitidos
+            maxDate: "-18y", // Não permitir datas de nascimento com menos de 18 anos
+          });
+        });
+        
+        function formatarCPF() {
+            var cpfInput = document.getElementById('cpf');
+            var cpf = cpfInput.value.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
+      
+            if (cpf.length >= 9) {
+                cpfInput.value = cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+            } else if (cpf.length >= 6) {
+                cpfInput.value = cpf.replace(/(\d{3})(\d{3})(\d{0,3})/, '$1.$2.$3');
+            } else if (cpf.length >= 3) {
+                cpfInput.value = cpf.replace(/(\d{3})(\d{0,3})/, '$1.$2');
+            } else {
+                cpfInput.value = cpf;
+            }
+        }
+    </script>
+
+    <style>
+        /* Seu estilo CSS aqui */
+    </style>
+</head>
+<body>
+    <div class="container" id="page2">
+        <form method="POST" class="form-login3" action="seu-backend-para-processar-o-formulario.php">
+            <!-- Substitua "seu-backend-para-processar-o-formulario.php" pela URL do seu servidor ou endpoint de processamento -->
+
+            <h1>Cadastro de Cliente</h1>
+
+            <label for="nome">Nome do cliente:</label>
+            <input type="text" id="nome" name="nome" required>
+            
+            <label for="dataNascimento">Data de Nascimento:</label>
+            <input type="text" id="dataNascimento" name="dataNascimento">
+
+            <label for="email">E-mail:</label>
+            <input type="text" id="email" name="email" required>
+            
+            <label for="cpf">CPF:</label>
+            <input type="text" id="cpf" name="cpf" placeholder="000.000.000-00" onkeyup="formatarCPF()">
+    
+            <label for="senha">Senha:</label>
+            <input type="text" id="senha" name="senha" required>
+            
+            <input type="submit" value="Cadastrar Cliente" id="cadas-cli">
+        </form>
+    </div>
+</body>
+</html>
